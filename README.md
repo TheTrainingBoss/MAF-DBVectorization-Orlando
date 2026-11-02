@@ -1,3 +1,5 @@
+![VS Live 360](media/vslive-orlando.png)
+
 # Vectorization in Your Database: Three Demos, One Agent
 
 Demo code for the session **Choose Wisely Between PostgreSQL, CosmosDB, SQL Server and Azure AI Search for Vectorization** at [Visual Studio Live!](https://vslive.com/ECG/live360events/Events/Orlando-2026/VSLive.aspx), part of [Live! 360 Tech Con Orlando 2026](https://live360events.com/events/orlando-2026/home.aspx).
