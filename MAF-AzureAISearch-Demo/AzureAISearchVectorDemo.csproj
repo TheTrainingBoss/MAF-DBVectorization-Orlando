@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net11.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Shared with the other demos, so the Azure OpenAI settings only need to be entered once. -->
+    <UserSecretsId>cosmos-vector-demo</UserSecretsId>
+    <!-- The OpenAI SDK marks the Responses client and token sign-in as evaluation APIs. -->
+    <NoWarn>$(NoWarn);OPENAI001</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.21.0" />
+    <PackageReference Include="Azure.Search.Documents" Version="12.0.0" />
+    <PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.28.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="11.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="11.0.0" />
+    <PackageReference Include="OpenAI" Version="2.15.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="data\products.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

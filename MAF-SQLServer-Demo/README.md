@@ -1,25 +1,12 @@
 # SQL Server 2025 Express vectorization demo (C#)
 
-The same demo as [MAF-CosmosDB-Demo](../MAF-CosmosDB-Demo/README.md) and [MAF-Postgresql-Demo](../MAF-Postgresql-Demo/README.md), with SQL Server 2025 Express as the database. It has the same menu, the same [products.json](data/products.json), the same sample questions and the same Microsoft Agent Framework 1.27.0 agent, so you can run all three side by side during your session.
+The same demo as [MAF-CosmosDB-Demo](../MAF-CosmosDB-Demo/README.md) and [MAF-Postgresql-Demo](../MAF-Postgresql-Demo/README.md), with SQL Server 2025 Express as the database. It has the same menu, the same [products.json](data/products.json), the same sample questions and the same Microsoft Agent Framework 1.28.0 agent, so you can run all three side by side during your session.
 
-```text
-                       STEPS 1-3                        STEP 5
-data/products.json ----------------> SQL Server <---------------- text-embedding-3-small
-                        import      (dbo.Products)     add a vector
-                                         |             to each row
-                                         |
-Search text -> embed -> VECTOR_DISTANCE -> top 4 rows              (STEPS 7-8)
-
-Question -> Agent Framework agent (gpt-6-luna) -> grounded answer  (STEP 9)
-                      |   ^
-       calls the tool |   | top 4 rows
-                      v   |
-                search_catalog -> embed -> VECTOR_DISTANCE
-```
+![SQL Server 2025 demo flow: products.json is imported into the dbo.Products table in steps 1 to 3, and text-embedding-3-small adds a vector to each row in step 5. In steps 7 and 8, search text is embedded and searched with VECTOR_DISTANCE, which returns the top 4 rows. In step 9, a question goes to the Agent Framework agent, which calls the search_catalog tool to embed it and run VECTOR_DISTANCE, gets the top 4 rows back, and returns a grounded answer.](media/sqlserver-flow.png)
 
 ## Part 1: Which AI extensions do you need?
 
-**None.** Vector support is built into the SQL Server 2025 engine, including Express, so there's nothing to install on the server. The only addition is on the client: the `Microsoft.Data.SqlClient` NuGet package, version 6.1.0 or later, which this project restores for you (it uses 7.1.1).
+**None.** Vector support is built into the SQL Server 2025 engine, including Express, so there's nothing to install on the server. The only addition is on the client: the `Microsoft.Data.SqlClient` NuGet package, version 6.1.0 or later, which this project restores for you (it uses 7.1.2).
 
 | Feature | Available on Express | Status | Used in this demo? |
 | --- | --- | --- | --- |
@@ -50,7 +37,7 @@ The first four rows of the table were checked on this machine, and the rest come
 | You need | Status on this machine when this was written |
 | --- | --- |
 | SQL Server 2025 Express | Installed and running as `localhost\SQLEXPRESS`. |
-| .NET 10 SDK | Installed. |
+| .NET 11 SDK | Installed. |
 | Windows sign-in with rights to create a database | Your account is a sysadmin on the instance. |
 | Foundry deployments of `text-embedding-3-small` and `gpt-6-luna` | The same deployments as the other demos. |
 
@@ -251,7 +238,7 @@ DROP DATABASE VectorDemo;
 | [Settings.cs](Settings.cs) | Reads user secrets and environment variables |
 | [Ui.cs](Ui.cs) | Console formatting helpers |
 
-`System.Security.Cryptography.Pkcs` is pinned in [SqlServerVectorDemo.csproj](SqlServerVectorDemo.csproj) because `Microsoft.Data.SqlClient` otherwise brings in version 9.0.18, which has known vulnerabilities.
+`System.Security.Cryptography.Pkcs` is pinned to 10.0.15 in [SqlServerVectorDemo.csproj](SqlServerVectorDemo.csproj). The pin was added because `Microsoft.Data.SqlClient` 7.1.1 brought in version 9.0.18, which has known vulnerabilities. Version 7.1.2 brings in 9.0.21, which has none listed on NuGet, so the pin is now optional.
 
 ## Sources
 

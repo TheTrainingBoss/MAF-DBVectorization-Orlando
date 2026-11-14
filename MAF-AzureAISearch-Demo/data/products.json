@@ -1,0 +1,134 @@
+[
+  {
+    "id": "p-001",
+    "name": "Ridgeline GTX Mid Boot",
+    "category": "Footwear",
+    "price": 189.00,
+    "weightGrams": 1120,
+    "rating": 4.7,
+    "description": "The Ridgeline Mid is a sturdy over-the-ankle boot built for rough, sodden terrain. A seam-sealed membrane sits between the nubuck leather upper and the lining, so puddles, boggy meadows and shallow stream crossings stay on the outside while perspiration vapour escapes. The deep 5 mm lugs bite into mud and loose scree, and a nylon shank spreads the load across the sole when you carry a heavy pack. A rubber toe cap shrugs off rock strikes, and the cushioned collar prevents blisters during the first long days of wear. Most owners report that it needs almost no breaking in. It is an excellent match for shoulder-season trekking in Scotland, Patagonia or the Pacific Northwest, where downpours arrive without warning.",
+    "features": [ "Seam-sealed membrane", "5 mm lugs", "Nylon shank", "Rubber toe cap", "Resoleable" ],
+    "warranty": "2-year warranty against manufacturing defects; resoling service available for a fee."
+  },
+  {
+    "id": "p-002",
+    "name": "Skylark Trail Runner",
+    "category": "Footwear",
+    "price": 139.00,
+    "weightGrams": 560,
+    "rating": 4.5,
+    "description": "Skylark is a featherlight low-cut shoe for people who would rather move fast than carry much. The breathable engineered mesh sheds heat quickly on summer days and drains within minutes after fording a creek, although it deliberately has no barrier layer. A rock plate under the forefoot protects against sharp stones, and the responsive foam midsole returns energy mile after mile. The sticky rubber outsole grips wet slabs and dusty switchbacks equally well. A wide toe box leaves room for swelling during ultramarathons and long days on the trail, and the quick-pull lacing can be adjusted with one hand without stopping.",
+    "features": [ "Engineered mesh upper", "Forefoot rock plate", "Quick-pull lacing", "4 mm drop" ],
+    "warranty": "1-year warranty against manufacturing defects."
+  },
+  {
+    "id": "p-003",
+    "name": "Polaris -18 Down Mummy Bag",
+    "category": "Sleep Systems",
+    "price": 429.00,
+    "weightGrams": 1350,
+    "rating": 4.9,
+    "description": "Polaris is our warmest expedition mummy bag, comfort-rated to -18 °C (0 °F). It is filled with responsibly sourced 800-fill goose down treated to resist clumping in damp conditions. Box-wall baffles stop the insulation from shifting, which eliminates the chilly spots that plague cheaper designs. A contoured hood cinches around your face, a full-length draft tube backs the zipper, and a thermal collar seals the warmth in around your shoulders. Foot-box geometry lets your toes rest naturally, so you wake up comfortable after sub-zero nights above the snow line. It compresses to the size of a loaf of bread, and a stuff sack and a storage sack are both included.",
+    "features": [ "800-fill down", "-18 °C comfort rating", "Box-wall baffles", "Thermal collar", "Full-length draft tube" ],
+    "warranty": "Lifetime warranty on materials and workmanship; free repairs of zippers and seams."
+  },
+  {
+    "id": "p-004",
+    "name": "Meadow 5 Synthetic Quilt",
+    "category": "Sleep Systems",
+    "price": 149.00,
+    "weightGrams": 780,
+    "rating": 4.3,
+    "description": "Meadow is a relaxed, open-footed quilt for warm-weather adventures, comfort-rated to 5 °C (41 °F). Its recycled synthetic insulation keeps lofting even if it gets soaked in a leaky shelter, and it can be machine washed at home. Clips and an elastic strap fasten it to any sleeping pad, so you can sprawl out instead of feeling confined. It doubles as a campfire blanket, a van-life throw or an extra layer for guests at home. If you sleep hot, or you only head out between late spring and early autumn, this is the most versatile and affordable choice in our range.",
+    "features": [ "Recycled synthetic fill", "5 °C comfort rating", "Pad attachment straps", "Machine washable" ],
+    "warranty": "2-year warranty against manufacturing defects."
+  },
+  {
+    "id": "p-005",
+    "name": "Fjord 2P Four-Season Tent",
+    "category": "Shelter",
+    "price": 649.00,
+    "weightGrams": 3300,
+    "rating": 4.8,
+    "description": "Fjord is a geodesic dome engineered to stand firm when the weather turns violent. Four crossing aluminium poles and twenty guy-out points hold their shape against gale-force gusts and heavy snow loads on exposed ridges. The silicone-coated flysheet has a 10,000 mm hydrostatic head, and the bathtub floor keeps meltwater out. Two vestibules swallow boots, packs and a cooking setup, while high and low vents reduce condensation. It pitches outer-first in under five minutes, even with gloves on, so the sleeping compartment stays protected during a storm. Mountaineers have relied on it at base camps from the Alps to the Karakoram.",
+    "features": [ "Four crossing aluminium poles", "20 guy-out points", "10,000 mm flysheet", "Two vestibules", "Sleeps two" ],
+    "warranty": "3-year warranty; pole replacement included for the first 3 years."
+  },
+  {
+    "id": "p-006",
+    "name": "Wisp UL 2 Backpacking Tent",
+    "category": "Shelter",
+    "price": 279.00,
+    "weightGrams": 1090,
+    "rating": 4.4,
+    "description": "Weighing just over a kilogram, the Wisp UL 2 is a three-season shelter for two that packs down smaller than a water bottle. A single central pole and your own trekking poles support the semi-freestanding frame, which trims every unnecessary gram. The mesh inner brings in a cooling breeze and blocks mosquitoes and midges on humid evenings. A dual-door layout means nobody has to crawl over their partner in the middle of the night. It is ideal for thru-hikers and bikepackers counting every gram, although it is not designed for snow loads or fully exposed alpine camps.",
+    "features": [ "1.09 kg trail weight", "Trekking pole support", "Dual doors", "Mesh inner", "Sleeps two" ],
+    "warranty": "2-year warranty against manufacturing defects."
+  },
+  {
+    "id": "p-007",
+    "name": "Ember Titanium Canister Stove",
+    "category": "Camp Kitchen",
+    "price": 74.00,
+    "weightGrams": 68,
+    "rating": 4.6,
+    "description": "Ember is a thumb-sized titanium burner that screws directly onto a standard threaded gas canister. It brings half a litre of water to a rolling boil in about three minutes, and its precise valve can simmer gently enough for porridge or a risotto. The serrated pot supports fold away, and a piezo igniter means there is no need to carry matches. It comes with a small wind shield that protects the flame on breezy ledges. Whether you are rehydrating dinner on a remote ridge or brewing a morning cup beside an alpine lake, it delivers a hot plate of food with almost no pack weight.",
+    "features": [ "Titanium construction", "Piezo igniter", "Simmer control", "68 g", "Includes wind shield" ],
+    "warranty": "3-year warranty against manufacturing defects."
+  },
+  {
+    "id": "p-008",
+    "name": "ClearStream Gravity Filter 4L",
+    "category": "Hydration",
+    "price": 119.00,
+    "weightGrams": 310,
+    "rating": 4.7,
+    "description": "Hang the ClearStream reservoir from a branch and let gravity do the work. Its hollow-fibre membrane has a 0.1 micron pore size that removes bacteria, protozoa and sediment from streams and lakes at a rate of up to two litres per minute, with no pumping and no chemical aftertaste. One cartridge treats up to 1,500 litres, and it can be backflushed in the field to restore flow. The large four-litre capacity makes it a favourite with groups and families at base camp. Note that it does not remove viruses, so travellers visiting regions with poor sanitation should add a chemical treatment as well.",
+    "features": [ "0.1 micron hollow-fibre", "4 L reservoir", "2 L per minute", "Field backflush", "1,500 L cartridge life" ],
+    "warranty": "1-year warranty; replacement cartridges sold separately."
+  },
+  {
+    "id": "p-009",
+    "name": "Thermo Peak Vacuum Flask 1L",
+    "category": "Hydration",
+    "price": 49.00,
+    "weightGrams": 620,
+    "rating": 4.8,
+    "description": "Thermo Peak is a double-walled stainless steel vacuum flask that holds a brew steaming for up to 24 hours and a cold drink icy for up to 36. The cup-shaped lid serves as a mug for sharing tea on the summit, and a pour-through stopper seals completely so nothing leaks in your rucksack. A powder-coated finish grips well with gloves on, and the dented-but-never-broken steel body survives drops onto rock. It suits ski tourers, anglers, construction crews and anybody spending a long shift in the elements who wants espresso at the far end of the day.",
+    "features": [ "1 L capacity", "24-hour heat retention", "36-hour cold retention", "Leakproof stopper", "Cup lid" ],
+    "warranty": "Lifetime warranty on vacuum performance."
+  },
+  {
+    "id": "p-010",
+    "name": "Atlas 65 Trekking Pack",
+    "category": "Packs",
+    "price": 259.00,
+    "weightGrams": 2150,
+    "rating": 4.6,
+    "description": "Atlas 65 is a load hauler for multi-week expeditions and long-distance routes. Its adjustable aluminium frame transfers up to 25 kg from your shoulders to your hips, and a mesh trampoline back panel keeps air moving so your shirt stays comfortable on steep climbs. The removable lid converts into a day pack for summit pushes. A J-shaped front zip gives access to the whole main compartment, so there's no need to unpack everything to find your stove. There are ice axe loops, a hydration sleeve, and an integrated rain cover in the base. Sizes are available for short, regular and long torsos.",
+    "features": [ "65 L capacity", "25 kg load rating", "Removable lid day pack", "Integrated rain cover", "Three torso sizes" ],
+    "warranty": "Lifetime warranty on materials and workmanship."
+  },
+  {
+    "id": "p-011",
+    "name": "Lumen 800 Rechargeable Headlamp",
+    "category": "Electronics",
+    "price": 69.00,
+    "weightGrams": 95,
+    "rating": 4.5,
+    "description": "Lumen throws 800 lumens of bright, even light up to 150 metres down the trail, which is more than enough for pre-dawn alpine starts or finding a route after sunset. A red mode preserves your night vision and avoids dazzling your tent-mates. The battery charges over USB-C and lasts up to 200 hours on its lowest setting; a clear indicator shows how much power is left. The IPX7 rating means it survives temporary immersion, and the lockout mode prevents it from switching on inside your pack. A reactive sensor automatically dims the beam when you look at a map.",
+    "features": [ "800 lumens", "USB-C charging", "Red night mode", "IPX7", "Reactive sensor" ],
+    "warranty": "2-year warranty; 1-year on the battery."
+  },
+  {
+    "id": "p-012",
+    "name": "SafeGuide Satellite Messenger",
+    "category": "Electronics",
+    "price": 299.00,
+    "weightGrams": 113,
+    "rating": 4.6,
+    "description": "SafeGuide keeps you connected where phones have no signal. It sends two-way texts and location updates through a global satellite network, so family at home can follow your progress on a shared map. If something goes badly wrong, the protected SOS button reaches a 24/7 emergency coordination centre that alerts local rescue teams. The rugged, palm-sized body pairs with your phone over Bluetooth for comfortable typing and offers detailed weather forecasts for remote regions. Its battery lasts up to 14 days at a ten-minute tracking interval. An active monthly subscription, sold separately, is required for satellite service.",
+    "features": [ "Two-way satellite messaging", "SOS button", "Weather forecasts", "14-day battery", "Bluetooth pairing" ],
+    "warranty": "2-year warranty; subscription plans are billed separately."
+  }
+]

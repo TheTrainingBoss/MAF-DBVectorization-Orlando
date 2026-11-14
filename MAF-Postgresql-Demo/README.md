@@ -1,21 +1,8 @@
 # PostgreSQL 18 vectorization demo (C#)
 
-The same demo as [MAF-CosmosDB-Demo](../MAF-CosmosDB-Demo/README.md), with PostgreSQL 18 and `pgvector` in place of Azure Cosmos DB. It has the same menu, the same [products.json](data/products.json), the same sample questions and the same Microsoft Agent Framework 1.27.0 agent, so you can run the two side by side during your session.
+The same demo as [MAF-CosmosDB-Demo](../MAF-CosmosDB-Demo/README.md), with PostgreSQL 18 and `pgvector` in place of Azure Cosmos DB. It has the same menu, the same [products.json](data/products.json), the same sample questions and the same Microsoft Agent Framework 1.28.0 agent, so you can run the two side by side during your session.
 
-```text
-                       STEPS 1-3                        STEP 5
-data/products.json ----------------> PostgreSQL <---------------- text-embedding-3-small
-                        import      (products table)   add a vector
-                                         |             to each row
-                                         |
-Search text -> embed -> embedding <=> @vector -> top 4 rows        (STEPS 7-8)
-
-Question -> Agent Framework agent (gpt-6-luna) -> grounded answer  (STEP 9)
-                      |   ^
-       calls the tool |   | top 4 rows
-                      v   |
-                search_catalog -> embed -> embedding <=> @vector
-```
+![PostgreSQL demo flow: products.json is imported into the PostgreSQL products table in steps 1 to 3, and text-embedding-3-small adds a vector to each row in step 5. In steps 7 and 8, search text is embedded and searched with the <=> operator, which returns the top 4 rows. In step 9, a question goes to the Agent Framework agent, which calls the search_catalog tool to embed it and run the <=> operator, gets the top 4 rows back, and returns a grounded answer.](media/postgresql-flow.png)
 
 ## Part 1: Which AI extensions do you need?
 
@@ -34,7 +21,7 @@ Question -> Agent Framework agent (gpt-6-luna) -> grounded answer  (STEP 9)
 | You need | Status on this machine when this was written |
 | --- | --- |
 | PostgreSQL 18 | 18.6 is installed and running on port 5432. |
-| .NET 10 SDK | Installed. |
+| .NET 11 SDK | Installed. |
 | Visual Studio C++ build tools | Build Tools 2026 with the C++ tools is installed. |
 | PostgreSQL development headers | Installed, in `C:\Program Files\PostgreSQL\18\include`. |
 | Git | Installed. |

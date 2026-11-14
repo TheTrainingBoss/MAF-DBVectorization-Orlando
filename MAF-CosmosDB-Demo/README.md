@@ -1,23 +1,10 @@
 # Azure Cosmos DB vectorization demo (C#)
 
-A menu-driven .NET console app that shows, one step at a time, what vectorization adds to Azure Cosmos DB for NoSQL. It imports an outdoor gear catalog with long product descriptions, shows keyword search failing on natural questions, and vectorizes the documents with `text-embedding-3-small`. A Microsoft Agent Framework 1.27.0 agent running on `gpt-6-luna` then answers questions by searching the data itself. Both models are your deployments in Azure OpenAI, through your Foundry resource.
+A menu-driven .NET console app that shows, one step at a time, what vectorization adds to Azure Cosmos DB for NoSQL. It imports an outdoor gear catalog with long product descriptions, shows keyword search failing on natural questions, and vectorizes the documents with `text-embedding-3-small`. A Microsoft Agent Framework 1.28.0 agent running on `gpt-6-luna` then answers questions by searching the data itself. Both models are your deployments in Azure OpenAI, through your Foundry resource.
 
 **The story for your audience:** the data doesn't move to a separate vector database. The vectors live on the same documents, next to the business data, and are queried with ordinary Cosmos DB SQL.
 
-```text
-                       STEPS 1-3                        STEP 5
-data/products.json ----------------> Cosmos DB <----------------- text-embedding-3-small
-                        import      (documents)    add a vector
-                                         |            to each doc
-                                         |
-Search text -> embed -> VectorDistance -> top 4 documents        (STEPS 7-8)
-
-Question -> Agent Framework agent (gpt-6-luna) -> grounded answer  (STEP 9)
-                      |   ^
-       calls the tool |   | top 4 documents
-                      v   |
-                search_catalog -> embed -> VectorDistance
-```
+![Azure Cosmos DB demo flow: products.json is imported into the Cosmos DB container in steps 1 to 3, and text-embedding-3-small adds a vector to each document in step 5. In steps 7 and 8, search text is embedded and searched with VectorDistance, which returns the top 4 documents. In step 9, a question goes to the Agent Framework agent, which calls the search_catalog tool to embed it and run VectorDistance, gets the top 4 documents back, and returns a grounded answer.](media/cosmosdb-flow.png)
 
 ## Part 1: Setup
 
@@ -25,7 +12,7 @@ Question -> Agent Framework agent (gpt-6-luna) -> grounded answer  (STEP 9)
 
 | You need | Notes |
 | --- | --- |
-| .NET 10 SDK | Run `dotnet --version`. |
+| .NET 11 SDK | Run `dotnet --version`. |
 | Azure Cosmos DB for **NoSQL** account | Vector search here uses the NoSQL API. A MongoDB or other API account won't work. |
 | Vector search enabled on the account | Portal: your account > **Settings** > **Features** > **Vector Search for NoSQL API**. It can take around 15 minutes to activate. |
 | Foundry resource with two model deployments | One for `text-embedding-3-small` and one for `gpt-6-luna`. The defaults assume each deployment has the same name as its model. |
@@ -256,7 +243,7 @@ Choose `R` to delete the container. If your database has provisioned throughput 
 
 ## How it connects to Azure OpenAI
 
-- **Agent Framework:** `Microsoft.Agents.AI.OpenAI` 1.27.0 turns a Responses client into an `AIAgent` with `AsAIAgent`.
+- **Agent Framework:** `Microsoft.Agents.AI.OpenAI` 1.28.0 turns a Responses client into an `AIAgent` with `AsAIAgent`.
 - **Connection:** the app uses the OpenAI SDK with the Azure OpenAI v1 endpoint, `https://YOUR-RESOURCE.openai.azure.com/openai/v1/`. This means `Azure.AI.OpenAI` isn't needed.
 - **Responses API:** the agent uses it because `gpt-6-luna` only supports function calling on Chat Completions when reasoning is turned off.
 - **Evaluation APIs:** the OpenAI SDK marks the Responses client and token sign-in as evaluation APIs, so [CosmosVectorDemo.csproj](CosmosVectorDemo.csproj) suppresses `OPENAI001`. Pin the package versions if you reuse this code.
