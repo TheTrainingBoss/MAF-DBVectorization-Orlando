@@ -159,6 +159,43 @@ VectorSearch = new VectorSearch
 
 **About the vector scores:** Azure AI Search reports cosine results as `1 / (1 + distance)`, which runs from about 0.333 to 1. The app converts this back to cosine similarity, using `similarity = 2 - 1 / score`, so all four demos show the same numbers for the same match.
 
+#### How hybrid search merges results: Reciprocal Rank Fusion (RRF)
+
+**The problem:** keyword search (BM25) and vector search score results on completely different scales. A BM25 score might be 7.2 and a cosine similarity 0.46, so the two can't simply be added together.
+
+**The solution:** RRF ignores the scores and uses only each document's *position* in each list:
+
+```text
+RRF score = Σ 1 / (k + rank)     summed over every list the document appears in, with k usually 60
+```
+
+- A document that ranks high in **both** lists gets two large contributions, so it rises to the top.
+- A document found by only **one** list gets a single contribution.
+- `k = 60` flattens the curve, so being 1st rather than 3rd matters, but not overwhelmingly.
+
+**A worked example,** with the textbook formula, where the top result is rank 1:
+
+| Product | Keyword rank | Vector rank | RRF score |
+| --- | --- | --- | --- |
+| Ridgeline boot | 2 | 1 | 1/62 + 1/61 = 0.0325 |
+| Skylark runner | 1 | 3 | 1/61 + 1/63 = 0.0323 |
+| Polaris bag | not found | 2 | 1/62 = 0.0161 |
+
+Ridgeline wins without topping the keyword list, because both lists rank it highly.
+
+**What the demo shows.** In a test run of this demo:
+
+- **"how can I call for help when I have no phone signal":** the SafeGuide messenger scored **0.0333**, about the highest possible. Both keyword search, through "phone" and "signal", and vector search ranked it first.
+- **"necesito algo para purificar agua en la montaña":** every hybrid score was about **0.0167**, half as much. No Spanish word appears in the English catalog, so keyword search contributed nothing and only the vector ranking counted. When one list has nothing to offer, RRF falls back to the other list's order.
+
+**Why keyword search helps here when step 4 found nothing:** step 4 requires *every* keyword, to match the other demos. The keyword half of a hybrid query matches *any* of the words, so it usually contributes something.
+
+**Why the scores are so small:** an RRF score is a sum of fractions like 1/61, so it never gets anywhere near the 0.3 to 0.5 cosine scores. Only the order of hybrid results matters.
+
+**Why it's worth having:** vectors are weak on exact terms such as product codes, model names and SKUs, and keywords are weak on meaning. RRF gets both right in one request, without anyone tuning weights.
+
+**A detail for the curious:** the worked example counts the top result as rank 1, so a perfect score is 2/61 = 0.0328. The demo reached 0.0333, which is 2/60, so Azure AI Search appears to count the top result as rank 0. That's an inference from the numbers, not something Microsoft's documentation states, and it never changes the order of the results.
+
 **Say:** "Hybrid is why people pick a search service. It catches exact product names and part numbers, where vectors are weak, and meaning, where keywords are weak, in one request."
 
 ### 8. Vector search with a price filter

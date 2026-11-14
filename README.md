@@ -59,7 +59,7 @@ All four projects target .NET 11 and share the same AI stack. Only the client li
 | --- | --- | --- |
 | .NET (`net11.0`) | 11 | All projects |
 | `Microsoft.Agents.AI.OpenAI` (Microsoft Agent Framework) | 1.28.0 | All projects |
-| `OpenAI` | 2.15.0 | All projects |
+| `OpenAI` | 2.14.0 | All projects. Agent Framework 1.28.0 needs 2.14.0: with 2.15.0, the agent fails with a `MissingMethodException` |
 | `Azure.Identity` | 1.21.0 | All projects |
 | `Microsoft.Extensions.Configuration.UserSecrets` and `.EnvironmentVariables` | 11.0.0 | All projects |
 | `Microsoft.Azure.Cosmos` | 3.64.0 | Cosmos DB |

@@ -199,19 +199,7 @@ public sealed class Demo
     {
         Ui.Heading($"STEP 5 - Vectorize: {_settings.EmbeddingDeployment} turns each document into numbers");
 
-        var options = new SearchOptions { Size = 1000 };
-        foreach (var field in ProductFields)
-        {
-            options.Select.Add(field);
-        }
-
-        var products = new List<Product>();
-        SearchResults<Product> all = await _search.SearchAsync<Product>("*", options);
-        await foreach (var result in all.GetResultsAsync())
-        {
-            products.Add(result.Document);
-        }
-
+        var products = await ReadAllDocumentsAsync(ProductFields, ready: docs => docs.Count > 0);
         if (products.Count == 0)
         {
             Ui.Warn("The index is empty. Run step 3 first.");
@@ -250,21 +238,18 @@ public sealed class Demo
     {
         Ui.Heading("STEP 6 - What does a vector look like?");
 
-        var options = new SearchOptions { Size = 1, Filter = "embedding/any()" };
-        options.Select.Add("id");
+        // Vector fields can't be filtered on, so read the documents and pick the first one that has a vector.
+        var documents = await ReadAllDocumentsAsync(
+            ["id", "name", "embedding"], ready: docs => docs.Any(d => d.Embedding is { Length: > 0 }));
 
-        SearchResults<Product> withVectors = await _search.SearchAsync<Product>("*", options);
-        var first = await withVectors.GetResultsAsync().FirstOrDefaultAsync();
-        if (first is null)
+        var product = documents.Where(d => d.Embedding is { Length: > 0 }).OrderBy(d => d.Id).FirstOrDefault();
+        if (product is null)
         {
             Ui.Warn("No vectors found. Run step 5 first.");
             return;
         }
 
-        Product product = await _search.GetDocumentAsync<Product>(
-            first.Document.Id, new GetDocumentOptions { SelectedFields = { "name", "embedding" } });
-
-        var vector = product.Embedding ?? [];
+        var vector = product.Embedding!;
         var preview = string.Join(", ", vector.Take(8).Select(v => v.ToString("F5")));
 
         Console.WriteLine($"  Product   : {product.Name}");
@@ -489,6 +474,36 @@ public sealed class Demo
         }
 
         return (hits, timer.ElapsedMilliseconds);
+    }
+
+    // New writes take about a second to become searchable, so retry briefly until the documents are ready.
+    private async Task<List<Product>> ReadAllDocumentsAsync(IEnumerable<string> fields, Func<List<Product>, bool> ready)
+    {
+        var options = new SearchOptions { Size = 1000 };
+        foreach (var field in fields)
+        {
+            options.Select.Add(field);
+        }
+
+        var documents = new List<Product>();
+        for (var attempt = 1; attempt <= 5; attempt++)
+        {
+            documents.Clear();
+            SearchResults<Product> all = await _search.SearchAsync<Product>("*", options);
+            await foreach (var result in all.GetResultsAsync())
+            {
+                documents.Add(result.Document);
+            }
+
+            if (ready(documents))
+            {
+                break;
+            }
+
+            await Task.Delay(1000);
+        }
+
+        return documents;
     }
 
     // Removes characters that the simple query syntax treats as operators.
