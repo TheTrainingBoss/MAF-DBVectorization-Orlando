@@ -271,3 +271,33 @@ Choose `R` to delete the table. To remove everything, run this:
 - [HNSW indexes and iterative scans](https://supabase.com/docs/guides/ai/vector-indexes/hnsw-indexes.md)
 - [azure_ai extension](https://learn.microsoft.com/en-us/Azure/postgresql/flexible-server/generative-ai-azure-openai)
 - [pgai on GitHub](https://github.com/timescale/pgai)
+
+## Note: what the `<=>` operator means
+
+`<=>` is the **cosine distance** operator. It comes from the `pgvector` extension, not from core PostgreSQL. It measures how far apart two vectors point, where a smaller value means a closer match:
+
+- `0` means the vectors point the same way (most similar).
+- `1` means they are unrelated (orthogonal).
+- `2` means they point in opposite directions.
+
+The search query in [Demo.cs](Demo.cs) uses it twice:
+
+```sql
+SELECT ..., 1 - (embedding <=> @vector) AS score   -- turn distance into similarity
+FROM products
+WHERE embedding IS NOT NULL
+ORDER BY embedding <=> @vector                     -- nearest products first
+LIMIT 4
+```
+
+- **`ORDER BY embedding <=> @vector`** sorts products by how close their embedding is to the embedded search text, nearest first. The HNSW index uses `vector_cosine_ops`, so it can speed up this ordering.
+- **`1 - (embedding <=> @vector)`** turns distance into cosine **similarity**, where higher is better. This gives the same kind of score as `VectorDistance` in the Cosmos DB demo, so results from the two demos can be compared directly.
+
+pgvector has other distance operators too, but this demo only uses `<=>`:
+
+| Operator | Meaning |
+| --- | --- |
+| `<->` | Euclidean (L2) distance |
+| `<#>` | Negative inner product |
+| `<=>` | Cosine distance |
+| `<+>` | Manhattan (L1) distance |
